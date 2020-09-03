@@ -1,0 +1,19 @@
+pipeline{
+    agent any
+    
+    environment{
+        PATH="/opt/maven/apache-maven-3.6.3/bin:$PATH"
+    }
+    stages{
+        stage("git checkout"){
+            steps{
+                 git credentialsId: '48b9912e-7d71-44bb-9007-916c7f56fa16', url: 'https://github.com/raghavendra8915/hello-world.git'               
+            }
+        }
+       stage("Maven build"){
+           steps{
+              sh "mvn clean package"
+           }
+        }
+      }
+    }
